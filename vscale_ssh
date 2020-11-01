@@ -214,8 +214,8 @@ class VscaleAnsible:
     def key_create(self):
 
         # Check the uniqueness of the scalet name
-        count = filter(
-            lambda x: x['name'] == self.module.params['name'], self.vscale.sshkey_list())
+        count = list(filter(
+            lambda x: x['name'] == self.module.params['name'], self.vscale.sshkey_list()))
         if len(count) >= 1:
             self.module.exit_json(
                 msg="Key with name %s alerady added to this account" % self.module.params['name'])
